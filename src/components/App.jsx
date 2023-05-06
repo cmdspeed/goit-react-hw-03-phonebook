@@ -15,6 +15,26 @@ export class App extends Component {
     filter: '',
   };
 
+  setLocalStorage = (key, value) => {
+    localStorage.setItem(key, JSON.stringify(value));
+  };
+
+  getLocalStorage = key => {
+    return JSON.parse(localStorage.getItem(key));
+  };
+
+  componentDidMount() {
+    if (this.getLocalStorage('contacts')) {
+      this.setState({ contacts: this.getLocalStorage('contacts') });
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    if (prevState !== this.state.contacts) {
+      this.setLocalStorage('contacts', this.state.contacts);
+    }
+  }
+
   handleSubmit = event => {
     const id = nanoid();
     const number = event.number;

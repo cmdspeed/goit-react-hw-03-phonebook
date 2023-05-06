@@ -49,7 +49,7 @@ export class Phonebook extends Component {
         />
 
         <button type="submit" className={css.btn}>
-          add contact
+          Add contact
         </button>
       </form>
     );
